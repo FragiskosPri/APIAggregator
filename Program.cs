@@ -1,8 +1,20 @@
+using APIAggregator.Interfaces;
+using APIAggregator.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers();
+
+// Register HTTP clients for each API
+builder.Services.AddHttpClient<IOpenWeatherMap, OpenWeatherMapService>();
+builder.Services.AddHttpClient<INewsApi, NewsApiService>();
+builder.Services.AddHttpClient<IGitHubApi, GitHubApiService>();
 
 builder.Services.AddControllers();
+
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
