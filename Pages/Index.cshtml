@@ -1,0 +1,197 @@
+﻿@page
+@model APIAggregator.Pages.IndexModel
+
+@using APIAggregator.Models
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>API Aggregation</title>
+	<link rel="stylesheet" href="~/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+	<!-- GitHub Data -->
+	<section id="githubData">
+		<h2 class="with-hr">
+			GitHub Repositories
+			<hr class="right-hr">
+		</h2>
+
+		@{
+			var repositoryType = typeof(Repository);
+			var properties = repositoryType.GetProperties();
+		}
+
+		<div class="table-wrapper">
+
+			<!-- Search and Requests Bar-->
+			<div id="editProgram-Search-Table" style="display: flex;">
+				<!-- Search Bar -->
+				<div class="searchWrapper">
+					<input class="searchInput" type="text" placeholder="Search Repo..." id="gitSearch" name="programSearch">
+					<button class="searchButton" onclick="searchTable('gitTableData', 'gitSearch')">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
+
+				<!-- Request Bar -->
+				<div class="searchWrapper">
+					<input class="searchInput" type="text" placeholder="Make Request..." id="requestSearch" name="requestSearch">
+					<button class="searchButton" onclick="searchRequests()">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
+			</div>
+
+			<table class="fl-table" id="gitTableData">
+				<thead>
+					<tr>
+						@foreach (var property in properties)
+						{
+							<th onclick="sortTable(@properties.ToList().IndexOf(property), 'gitTableData')">@property.Name</th>
+						}
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var repository in Model.GitHubRepositories)
+					{
+						<tr>
+							@foreach (var property in properties)
+							{
+								<td>@property.GetValue(repository)</td>
+							}
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<!-- Weather Data -->
+	<section id="weatherData">
+		<h2 class="with-hr">
+			Weather
+			<hr class="right-hr">
+		</h2>
+
+		<div class="table-wrapper">
+			<!-- Search Bar -->
+			<div id="editProgram-Search-Table" style="display: flex; gap: 10px;">
+				<div class="searchWrapper">
+					<input class="searchInput" type="text" placeholder="Search Weather..." id="weatherSearch" name="weatherSearch">
+					<button class="searchButton" onclick="searchTable('weatherTableData','weatherSearch')">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
+				<!-- Request Bar -->
+				<div class="searchWrapper">
+					<input class="searchInput" type="text" placeholder="Make Request..." id="weatherRequestSearch" name="weatherRequestSearch">
+					<button class="searchButton" onclick="searchRequests()">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
+			</div>
+
+			<table class="fl-table" id="weatherTableData">
+				<thead>
+					<tr>
+						<th onclick="sortTable(0, 'weatherTableData')">Coord.Lon</th>
+						<th onclick="sortTable(1, 'weatherTableData')">Coord.Lat</th>
+						<th onclick="sortTable(2, 'weatherTableData')">Weather.Main</th>
+						<th onclick="sortTable(3, 'weatherTableData')">Weather.Description</th>
+						<th onclick="sortTable(4, 'weatherTableData')">Main.Temp</th>
+						<th onclick="sortTable(5, 'weatherTableData')">Main.FeelsLike</th>
+						<th onclick="sortTable(6, 'weatherTableData')">Main.TempMin</th>
+						<th onclick="sortTable(7, 'weatherTableData')">Main.TempMax</th>
+						<th onclick="sortTable(8, 'weatherTableData')">Wind.Speed</th>
+						<th onclick="sortTable(9, 'weatherTableData')">Wind.Deg</th>
+						<th onclick="sortTable(10, 'weatherTableData')">Clouds.All</th>
+						<th onclick="sortTable(11, 'weatherTableData')">Sys.Country</th>
+						<th onclick="sortTable(12, 'weatherTableData')">Sys.Sunrise</th>
+						<th onclick="sortTable(13, 'weatherTableData')">Sys.Sunset</th>
+						<th onclick="sortTable(14, 'weatherTableData')">Name</th>
+						<th onclick="sortTable(15, 'weatherTableData')">Id</th>
+						<th onclick="sortTable(16, 'weatherTableData')">Base</th>
+						<th onclick="sortTable(17, 'weatherTableData')">Visibility</th>
+						<th onclick="sortTable(18, 'weatherTableData')">Dt</th>
+						<th onclick="sortTable(19, 'weatherTableData')">Cod</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>@Model.Weather.Coord?.Lon</td>
+						<td>@Model.Weather.Coord?.Lat</td>
+						<td>@Model.Weather.Weather?.FirstOrDefault()?.Main</td>
+						<td>@Model.Weather.Weather?.FirstOrDefault()?.Description</td>
+						<td>@Model.Weather.Main?.Temp</td>
+						<td>@Model.Weather.Main?.FeelsLike</td>
+						<td>@Model.Weather.Main?.TempMin</td>
+						<td>@Model.Weather.Main?.TempMax</td>
+						<td>@Model.Weather.Wind?.Speed</td>
+						<td>@Model.Weather.Wind?.Deg</td>
+						<td>@Model.Weather.Clouds?.All</td>
+						<td>@Model.Weather.Sys?.Country</td>
+						<td>@Model.Weather.Sys?.Sunrise</td>
+						<td>@Model.Weather.Sys?.Sunset</td>
+						<td>@Model.Weather.Name</td>
+						<td>@Model.Weather.Id</td>
+						<td>@Model.Weather.Base</td>
+						<td>@Model.Weather.Visibility</td>
+						<td>@Model.Weather.Dt</td>
+						<td>@Model.Weather.Cod</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<!-- Cat Facts Data -->
+	<section id="CatFactsData">
+		<h2 class="with-hr">
+			Cat Facts
+			<hr class="right-hr">
+		</h2>
+
+		<div class="table-wrapper">
+			<!-- Search Bar -->
+			<div id="editProgram-Search-Table" style="display: flex; gap: 10px;">
+				<div class="searchWrapper">
+					<input class="searchInput" type="text" placeholder="Search Cat Facts..." id="catFactsSearch" name="catFactsSearch">
+					<button class="searchButton" onclick="searchTable('CatFactsData','catFactsSearch')">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
+				<!-- Request Bar (Add any request functionality here if needed) -->
+				<div class="searchWrapper">
+					<input class="searchInput" type="text" placeholder="Make Request..." id="catFactsRequestSearch" name="catFactsRequestSearch">
+					<button class="searchButton" onclick="searchRequests()">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
+			</div>
+
+			<table class="fl-table" id="catFactsTableData">
+				<thead>
+					<tr>
+						<th onclick="sortTable(0, 'catFactsTableData')">Fact</th>
+						<th onclick="sortTable(1, 'catFactsTableData')">Length</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var catFact in Model.CatFacts.Data)
+					{
+						<tr>
+							<td>@catFact.Fact</td>
+							<td>@catFact.Length</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<script src="~/js/custom.js"></script> 
+</body>
+</html>
