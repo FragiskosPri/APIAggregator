@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using APIAggregator.Interfaces;
-using Microsoft.Extensions.Logging;
 
 namespace APIAggregator.Controllers
 {

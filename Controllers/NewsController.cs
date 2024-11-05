@@ -1,8 +1,5 @@
 ﻿using APIAggregator.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -27,7 +24,7 @@ public class NewsController : ControllerBase
 
             var articles = await _newsService.GetTopHeadlinesAsync(category);
 
-            if (articles is null )
+            if (articles is null)
             {
                 _logger.LogWarning("No articles found for category: {Category}", category);
                 return NotFound($"No articles found for category '{category}'.");
