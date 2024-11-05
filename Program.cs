@@ -8,8 +8,8 @@ builder.Services.AddControllers();
 
 // Register HTTP clients for each API
 builder.Services.AddHttpClient<IOpenWeatherMap, OpenWeatherMapService>();
-builder.Services.AddHttpClient<INewsApi, NewsApiService>();
 builder.Services.AddHttpClient<IGitHubApi, GitHubApiService>();
+builder.Services.AddHttpClient<ICatFacts, CatFactsService>();
 
 builder.Services.AddControllers();
 
