@@ -22,7 +22,8 @@ This project is an API aggregation service developed in ASP.NET Core. It fetches
    ```bash
    git clone https://github.com/YourUsername/APIAggregator.git
    cd APIAggregator
-   ```  
+   ```
+  
 2. **Configure API Keys**
 
 - If any external APIs require authentication, add your keys in appsettings.json:
@@ -63,7 +64,7 @@ Fetches a list of public repositories for a specified GitHub user.
   ```json
     [
       {
-        "id": 1296269,
+        "id": 0350365,
         "name": "Hello-World",
         "description": "My first repository on GitHub!",
         "url": "https://github.com/octocat/Hello-World"
