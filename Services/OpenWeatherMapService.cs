@@ -1,4 +1,5 @@
 ﻿using APIAggregator.Models;
+using APIAggregator.Interfaces;
 
 namespace APIAggregator.Services
 {

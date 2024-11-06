@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using APIAggregator.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace APIAggregator.Controllers
 {

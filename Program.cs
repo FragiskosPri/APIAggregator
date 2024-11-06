@@ -8,12 +8,11 @@ builder.Services.AddControllers();
 
 // Register HTTP clients for each API
 builder.Services.AddHttpClient<IOpenWeatherMap, OpenWeatherMapService>();
-builder.Services.AddHttpClient<INewsApi, NewsApiService>();
 builder.Services.AddHttpClient<IGitHubApi, GitHubApiService>();
+builder.Services.AddHttpClient<ICatFacts, CatFactsService>();
 
-builder.Services.AddControllers();
-
-
+// Add Razor Pages support
+builder.Services.AddRazorPages(); 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -29,9 +28,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseStaticFiles(); // Enable serving static files
 app.UseAuthorization();
 
+// Map API controllers
 app.MapControllers();
+
+// Map Razor Pages
+app.MapRazorPages();
 
 app.Run();
