@@ -23,8 +23,8 @@ namespace APIAggregator.Pages
 		}
 
 		public async Task OnGetAsync()
-		{
-			GitHubRepositories = await _gitHubApiService.GetUserRepositoriesAsync("sindresorhus");
+		{   // Added these as a placeholder :)
+			GitHubRepositories = await _gitHubApiService.GetUserRepositoriesAsync("fragiskospri");
 			CatFacts = await _catFactsService.GetRandomCatFactsAsync(6);
 			Weather = await _openWeatherService.GetCurrentWeatherAsync("Athens");
 		}

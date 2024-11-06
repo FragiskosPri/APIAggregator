@@ -38,8 +38,8 @@
 
 				<!-- Request Bar -->
 				<div class="searchWrapper">
-					<input class="searchInput" type="text" placeholder="Make Request..." id="requestSearch" name="requestSearch">
-					<button class="searchButton" onclick="searchRequests()">
+					<input class="searchInput" type="text" placeholder="Make Request..." id="gitUsernameInput" name="gitUsernameInput">
+					<button class="searchButton" onclick="fetchGitHubRepositories()">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
@@ -87,8 +87,8 @@
 				</div>
 				<!-- Request Bar -->
 				<div class="searchWrapper">
-					<input class="searchInput" type="text" placeholder="Make Request..." id="weatherRequestSearch" name="weatherRequestSearch">
-					<button class="searchButton" onclick="searchRequests()">
+					<input class="searchInput" type="text" placeholder="Make Request..." id="weatherRequestInput" name="weatherRequestSearch">
+					<button class="searchButton" onclick="fetchWeatherData()">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
@@ -166,7 +166,7 @@
 				<!-- Request Bar (Add any request functionality here if needed) -->
 				<div class="searchWrapper">
 					<input class="searchInput" type="text" placeholder="Make Request..." id="catFactsRequestSearch" name="catFactsRequestSearch">
-					<button class="searchButton" onclick="searchRequests()">
+					<button class="searchButton" onclick="fetchCatFacts()">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
@@ -193,5 +193,6 @@
 	</section>
 
 	<script src="~/js/custom.js"></script> 
+	<script src="~/js/apiRequestHandler.js"></script> 
 </body>
 </html>
